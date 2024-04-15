@@ -438,7 +438,7 @@ namespace gf
         VectorType y; // The y component of the vector
     };
 
-    typedef Vector2<double> Vector2d; // A vector with double components
-    typedef Vector2<float> Vector2f; // A vector with float components
-    typedef Vector2<int> Vector2i; // A vector with int components
+    using Vector2d = Vector2<double> ; // A vector with double components
+    using Vector2f = Vector2<float>; // A vector with float components
+    using Vector2i = Vector2<int> ; // A vector with int components
 };
