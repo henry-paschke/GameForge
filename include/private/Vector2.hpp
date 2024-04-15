@@ -11,6 +11,9 @@
 
 namespace gf
 {
+    /**
+     * @brief A class to represent a 2D vector
+    */
     template <typename VectorType>
     struct Vector2
     {
@@ -434,8 +437,8 @@ namespace gf
             return os << obj.get_string();
         }
 
-        VectorType x; // The x component of the vector
-        VectorType y; // The y component of the vector
+        VectorType x; ///< The x component of the vector
+        VectorType y; ///< The y component of the vector
     };
 
     using Vector2d = Vector2<double> ; // A vector with double components
