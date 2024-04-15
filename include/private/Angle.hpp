@@ -2,7 +2,7 @@
 #include <cmath>
 
 #ifndef M_PI
-    #define M_PI 3.14159265358979323846
+    #define M_PI 3.14159265358979323846f
 #endif
 
 namespace gf
@@ -27,7 +27,7 @@ namespace gf
          * @param radians The angle in radians.
         */
         Angle(float radians):
-            radians{static_cast<double>(radians)}
+            radians{static_cast<float>(radians)}
         {}
 
         /**
@@ -36,7 +36,7 @@ namespace gf
          * @param radians The angle in radians.
         */
         Angle(double radians):
-            radians{static_cast<double>(radians)}
+            radians{static_cast<float>(radians)}
         {}
 
         /**
@@ -44,27 +44,27 @@ namespace gf
          * 
          * @param degrees The angle in degrees.
         */
-        static inline Angle from_degrees(double degrees);
+        static inline Angle from_degrees(float degrees);
 
         /**
          * @brief Construct a new Angle object.
          * 
          * @param radians The angle in radians.
         */
-        static inline Angle from_radians(double radians);
+        static inline Angle from_radians(float radians);
 
         /**
          * @brief Get the angle in degrees.
         */
-        double get_degrees() const
+        float get_degrees() const
         {
-            return radians * 180.0 / M_PI;
+            return radians * 180.0f / M_PI;
         }
 
         /**
          * @brief Get the angle in radians.
         */
-        double get_radians() const
+        float get_radians() const
         {
             return radians;
         }
@@ -76,9 +76,9 @@ namespace gf
          * 
          * @return The sine of the angle.
         */
-        double sin() const
+        float sin() const
         {
-            return std::sin(radians);
+            return std::sinf(radians);
         }
 
         /**
@@ -86,9 +86,9 @@ namespace gf
          * 
          * @return The cosine of the angle.
         */
-        double cos() const
+        float cos() const
         {
-            return std::cos(radians);
+            return std::cosf(radians);
         }
 
         /**
@@ -96,9 +96,9 @@ namespace gf
          * 
          * @return The tangent of the angle.
         */
-        double tan() const
+        float tan() const
         {
-            return std::tan(radians);
+            return std::tanf(radians);
         }
 
         /**
@@ -106,9 +106,9 @@ namespace gf
          * 
          * @return The arc sine of the angle.
         */
-        double asin() const
+        float asin() const
         {
-            return std::asin(radians);
+            return std::asinf(radians);
         }
 
         /**
@@ -116,9 +116,9 @@ namespace gf
          * 
          * @return The arc cosine of the angle.
         */
-        double acos() const
+        float acos() const
         {
-            return std::acos(radians);
+            return std::acosf(radians);
         }
 
         /**
@@ -126,9 +126,9 @@ namespace gf
          * 
          * @return The arc tangent of the angle.
         */
-        double atan() const
+        float atan() const
         {
-            return std::atan(radians);
+            return std::atanf(radians);
         }
 
 
@@ -172,7 +172,7 @@ namespace gf
          * @param scalar The scalar value to multiply by.
          * @return The multiplied angle.
          */
-        Angle operator*(double scalar) const
+        Angle operator*(float scalar) const
         {
             return Angle{radians * scalar};
         }
@@ -183,7 +183,7 @@ namespace gf
          * @param scalar The scalar value to divide by.
          * @return The divided angle.
          */
-        Angle operator/(double scalar) const
+        Angle operator/(float scalar) const
         {
             return Angle{radians / scalar};
         }
@@ -218,7 +218,7 @@ namespace gf
          * @param scalar The scalar value to multiply by.
          * @return A reference to the current angle after multiplication.
          */
-        Angle& operator*=(double scalar)
+        Angle& operator*=(float scalar)
         {
             radians *= scalar;
             return *this;
@@ -230,7 +230,7 @@ namespace gf
          * @param scalar The scalar value to divide by.
          * @return A reference to the current angle after division.
          */
-        Angle& operator/=(double scalar)
+        Angle& operator/=(float scalar)
         {
             radians /= scalar;
             return *this;
@@ -288,27 +288,30 @@ namespace gf
 
     private:
 
-        double radians; ///< The angle in radians
+        float radians; ///< The angle in radians
 
     };
 
     /* Literals */
+
     inline Angle operator"" _deg(long double degrees)
     {
-        return Angle::from_degrees(degrees);
+        return Angle::from_degrees(static_cast<float>(degrees));
     }
 
     inline Angle operator"" _rad(long double radians)
     {
-        return Angle::from_radians(radians);
+        return Angle::from_radians(static_cast<float>(radians));
     }
 
-    inline Angle Angle::from_degrees(double degrees)
+    /* Static definitions */
+
+    inline Angle Angle::from_degrees(float degrees)
     {
         return Angle{degrees * M_PI / 180.0};
     }
 
-    inline Angle Angle::from_radians(double radians)
+    inline Angle Angle::from_radians(float radians)
     {
         return Angle{radians};
     }

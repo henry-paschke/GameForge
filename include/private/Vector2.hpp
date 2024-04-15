@@ -15,7 +15,7 @@ namespace gf
     /**
      * @brief A class to represent a 2D vector
     */
-    template <typename VectorType>
+    template <typename Vector_type>
     struct Vector2
     {
         /*Constructors*/
@@ -46,8 +46,8 @@ namespace gf
         */
         template<typename T1, typename T2>
         Vector2(const T1 x, const T2 y): 
-            x{static_cast<VectorType>(x)}, 
-            y{static_cast<VectorType>(y)}
+            x{static_cast<Vector_type>(x)}, 
+            y{static_cast<Vector_type>(y)}
         {}
 
         /**
@@ -61,8 +61,8 @@ namespace gf
         */
         template <typename OtherType>
         Vector2(const OtherType& vector): 
-            x{static_cast<VectorType>(vector.x)}, 
-            y{static_cast<VectorType>(vector.y)}
+            x{static_cast<Vector_type>(vector.x)}, 
+            y{static_cast<Vector_type>(vector.y)}
         {}
 
         /*Conversion operators*/
@@ -132,7 +132,7 @@ namespace gf
          * @param x The new x component
         
         */
-        void set_x(const VectorType x)
+        void set_x(const Vector_type x)
         {
             this->x = x;
         }
@@ -142,7 +142,7 @@ namespace gf
          * 
          * @param y The new y component
         */
-        void set_y(const VectorType y)
+        void set_y(const Vector_type y)
         {
             this->y = y;
         }
@@ -169,7 +169,7 @@ namespace gf
         /**
          * @brief Gets the x component of the vector
         */
-        VectorType get_x() const
+        Vector_type get_x() const
         {
             return x;
         }
@@ -177,7 +177,7 @@ namespace gf
         /**
          * @brief Gets the y component of the vector
         */
-        VectorType get_y() const
+        Vector_type get_y() const
         {
             return y;
         }
@@ -195,7 +195,7 @@ namespace gf
         */
         Vector2 get_normalized() const
         {
-            VectorType length = get_length();
+            Vector_type length = get_length();
             if (length != 0)
                 return Vector2(x / length, y / length);
             else
@@ -205,7 +205,7 @@ namespace gf
         /**
          * @brief Gets the magnitude of the vector
         */
-        VectorType get_length() const
+        Vector_type get_length() const
         {
             return std::sqrt((x * x) + (y * y));
         }
@@ -233,7 +233,7 @@ namespace gf
          * 
          * @param other The vector to get the dot product with
         */
-        VectorType get_dot_product(const Vector2& other) const
+        Vector_type get_dot_product(const Vector2& other) const
         {
 	        return (x * other.x) + (y * other.y);
         }
@@ -243,7 +243,7 @@ namespace gf
          * 
          * @param other The vector to get the cross product with
         */
-        VectorType get_cross_product(const Vector2& other) const
+        Vector_type get_cross_product(const Vector2& other) const
         {
             return (x * other.y) - (y * other.x);
         }
@@ -423,18 +423,18 @@ namespace gf
             return os << obj.get_string();
         }
 
-        VectorType x; ///< The x component of the vector
-        VectorType y; ///< The y component of the vector
+        Vector_type x; ///< The x component of the vector
+        Vector_type y; ///< The y component of the vector
     };
 
     using Vector2d = Vector2<double> ; // A vector with double components
     using Vector2f = Vector2<float>; // A vector with float components
     using Vector2i = Vector2<int> ; // A vector with int components
 
-    template <typename VectorType>
-    inline Vector2<VectorType> Vector2<VectorType>::from_angle(const Angle& angle)
+    template <typename Vector_type>
+    inline Vector2<Vector_type> Vector2<Vector_type>::from_angle(const Angle& angle)
     {
-        return Vector2<VectorType>{static_cast<VectorType>(angle.cos()), static_cast<VectorType>(angle.sin())};
+        return Vector2<Vector_type>{static_cast<Vector_type>(angle.cos()), static_cast<Vector_type>(angle.sin())};
     }
 
 };
