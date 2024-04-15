@@ -8,6 +8,7 @@
 #endif
 
 #include <cmath>
+#include "Angle.hpp"
 
 namespace gf
 {
@@ -33,21 +34,7 @@ namespace gf
          * 
          * @param angle The angle of the vector
         */
-        Vector2(const double angle):
-            x{std::cos(angle)},
-            y{std::sin(angle)}
-        {}
-
-        /**
-         * @brief Constructor for the vector that takes an angle 
-         * and constructs a unit vector in that direction
-         * 
-         * @param angle The angle of the vector
-        */
-        Vector2(const float angle):
-            x{std::cos(angle)},
-            y{std::sin(angle)}
-        {}
+        static inline Vector2 from_angle(const Angle& angle);
 
         /**
          * @brief Constructor for the vector that takes an x 
@@ -165,13 +152,12 @@ namespace gf
          * 
          * @param angle The new angle of the vector
         */
-        template <typename AngleType>
-        void set_angle(const AngleType angle)
+        void set_angle(const Angle& angle)
         {
            	if (angle != 0)
             {
-                float sin_of = std::sin(angle);
-                float cos_of = std::cos(angle);
+                float sin_of = angle.sin();
+                float cos_of = angle.cos();
 
                 x = (x * cos_of) - (y * sin_of);
                 y = (x * sin_of) + (y * cos_of);
@@ -199,7 +185,7 @@ namespace gf
         /**
          * @brief Gets the angle of the vector
         */
-        double get_angle() const
+        Angle get_angle() const
         {
             return std::atan2(y, x);
         }
@@ -227,10 +213,10 @@ namespace gf
         /**
          * @brief Gets the vector rotated by a certain angle about the origin
         */
-        Vector2 get_rotated(const float angle) const
+        Vector2 get_rotated(const Angle& angle) const
         {
-            float sin_of = std::sin(angle);
-            float cos_of = std::cos(angle);
+            double sin_of = angle.sin();
+            double cos_of = angle.cos();
             return Vector2((x * cos_of) - (y * sin_of), (x * sin_of) + (y * cos_of));
         }
 
@@ -444,4 +430,11 @@ namespace gf
     using Vector2d = Vector2<double> ; // A vector with double components
     using Vector2f = Vector2<float>; // A vector with float components
     using Vector2i = Vector2<int> ; // A vector with int components
+
+    template <typename VectorType>
+    inline Vector2<VectorType> Vector2<VectorType>::from_angle(const Angle& angle)
+    {
+        return Vector2<VectorType>{static_cast<VectorType>(angle.cos()), static_cast<VectorType>(angle.sin())};
+    }
+
 };

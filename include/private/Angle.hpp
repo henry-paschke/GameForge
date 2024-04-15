@@ -10,15 +10,14 @@ namespace gf
     /**
      * @brief A class to represent an angle in degrees or radians
     */
-    template <typename AngleType>
-    class AngleT
+    class Angle
     {
     public:
 
         /**
          * @brief Construct a new Angle object with a value of 0.
         */
-        AngleT():
+        Angle():
             radians{}
         {}
 
@@ -27,38 +26,37 @@ namespace gf
          * 
          * @param radians The angle in radians.
         */
-        template <typename OtherAngleType>
-        AngleT(OtherAngleType radians):
-            radians{static_cast<AngleType>(radians)}
+        Angle(float radians):
+            radians{static_cast<double>(radians)}
         {}
-
-        /**
-         * @brief Conversion operator to convert the angle to another type.
-        */
-        template <typename OtherAngleType>
-        operator AngleT<OtherAngleType>() const
-        {
-            return AngleT<OtherAngleType>{static_cast<OtherAngleType>(this->get_radians())};
-        }
-
-        /**
-         * @brief Construct a new Angle object.
-         * 
-         * @param degrees The angle in degrees.
-        */
-        static AngleT from_degrees(AngleType degrees);
 
         /**
          * @brief Construct a new Angle object.
          * 
          * @param radians The angle in radians.
         */
-        static AngleType from_radians(AngleType radians);
+        Angle(double radians):
+            radians{static_cast<double>(radians)}
+        {}
+
+        /**
+         * @brief Construct a new Angle object.
+         * 
+         * @param degrees The angle in degrees.
+        */
+        static inline Angle from_degrees(double degrees);
+
+        /**
+         * @brief Construct a new Angle object.
+         * 
+         * @param radians The angle in radians.
+        */
+        static inline Angle from_radians(double radians);
 
         /**
          * @brief Get the angle in degrees.
         */
-        AngleType get_degrees() const
+        double get_degrees() const
         {
             return radians * 180.0 / M_PI;
         }
@@ -66,7 +64,7 @@ namespace gf
         /**
          * @brief Get the angle in radians.
         */
-        AngleType get_radians() const
+        double get_radians() const
         {
             return radians;
         }
@@ -78,7 +76,7 @@ namespace gf
          * 
          * @return The sine of the angle.
         */
-        AngleType sin() const
+        double sin() const
         {
             return std::sin(radians);
         }
@@ -88,7 +86,7 @@ namespace gf
          * 
          * @return The cosine of the angle.
         */
-        AngleType cos() const
+        double cos() const
         {
             return std::cos(radians);
         }
@@ -98,7 +96,7 @@ namespace gf
          * 
          * @return The tangent of the angle.
         */
-        AngleType tan() const
+        double tan() const
         {
             return std::tan(radians);
         }
@@ -108,7 +106,7 @@ namespace gf
          * 
          * @return The arc sine of the angle.
         */
-        AngleType asin() const
+        double asin() const
         {
             return std::asin(radians);
         }
@@ -118,7 +116,7 @@ namespace gf
          * 
          * @return The arc cosine of the angle.
         */
-        AngleType acos() const
+        double acos() const
         {
             return std::acos(radians);
         }
@@ -128,7 +126,7 @@ namespace gf
          * 
          * @return The arc tangent of the angle.
         */
-        AngleType atan() const
+        double atan() const
         {
             return std::atan(radians);
         }
@@ -142,9 +140,9 @@ namespace gf
          * @param other The angle to add.
          * @return The sum of the two angles.
          */
-        AngleT operator+(const AngleT& other) const
+        Angle operator+(const Angle& other) const
         {
-            return AngleT{radians + other.radians};
+            return Angle{radians + other.radians};
         }
 
         /**
@@ -153,9 +151,9 @@ namespace gf
          * @param other The angle to subtract.
          * @return The difference between the two angles.
          */
-        AngleT operator-(const AngleT& other) const
+        Angle operator-(const Angle& other) const
         {
-            return AngleT{radians - other.radians};
+            return Angle{radians - other.radians};
         }
 
         /**
@@ -163,9 +161,9 @@ namespace gf
          * 
          * @return The negated angle.
          */
-        AngleT operator-() const
+        Angle operator-() const
         {
-            return AngleT{-radians};
+            return Angle{-radians};
         }
         
         /**
@@ -174,9 +172,9 @@ namespace gf
          * @param scalar The scalar value to multiply by.
          * @return The multiplied angle.
          */
-        AngleT operator*(AngleType scalar) const
+        Angle operator*(double scalar) const
         {
-            return AngleT{radians * scalar};
+            return Angle{radians * scalar};
         }
 
         /**
@@ -185,9 +183,9 @@ namespace gf
          * @param scalar The scalar value to divide by.
          * @return The divided angle.
          */
-        AngleT operator/(AngleType scalar) const
+        Angle operator/(double scalar) const
         {
-            return AngleT{radians / scalar};
+            return Angle{radians / scalar};
         }
 
         /**
@@ -196,7 +194,7 @@ namespace gf
          * @param other The angle to add.
          * @return A reference to the current angle after addition.
          */
-        AngleT& operator+=(const AngleT& other)
+        Angle& operator+=(const Angle& other)
         {
             radians += other.radians;
             return *this;
@@ -208,7 +206,7 @@ namespace gf
          * @param other The angle to subtract.
          * @return A reference to the current angle after subtraction.
          */
-        AngleT& operator-=(const AngleT& other)
+        Angle& operator-=(const Angle& other)
         {
             radians -= other.radians;
             return *this;
@@ -220,7 +218,7 @@ namespace gf
          * @param scalar The scalar value to multiply by.
          * @return A reference to the current angle after multiplication.
          */
-        AngleT& operator*=(AngleType scalar)
+        Angle& operator*=(double scalar)
         {
             radians *= scalar;
             return *this;
@@ -232,7 +230,7 @@ namespace gf
          * @param scalar The scalar value to divide by.
          * @return A reference to the current angle after division.
          */
-        AngleT& operator/=(AngleType scalar)
+        Angle& operator/=(double scalar)
         {
             radians /= scalar;
             return *this;
@@ -246,7 +244,7 @@ namespace gf
          * @param other The angle to compare with.
          * @return True if the angles are equal, false otherwise.
          */
-        bool operator==(const AngleT& other) const { return radians == other.radians; }
+        bool operator==(const Angle& other) const { return radians == other.radians; }
 
         /**
          * @brief Check if two angles are not equal.
@@ -254,7 +252,7 @@ namespace gf
          * @param other The angle to compare with.
          * @return True if the angles are not equal, false otherwise.
          */
-        bool operator!=(const AngleT& other) const { return !(*this == other); }
+        bool operator!=(const Angle& other) const { return !(*this == other); }
 
         /**
          * @brief Check if the current angle is less than another angle.
@@ -262,7 +260,7 @@ namespace gf
          * @param other The angle to compare with.
          * @return True if the current angle is less than the other angle, false otherwise.
          */
-        bool operator<(const AngleT& other) const { return radians < other.radians; }
+        bool operator<(const Angle& other) const { return radians < other.radians; }
 
         /**
          * @brief Check if the current angle is greater than another angle.
@@ -270,7 +268,7 @@ namespace gf
          * @param other The angle to compare with.
          * @return True if the current angle is greater than the other angle, false otherwise.
          */
-        bool operator>(const AngleT& other) const { return radians > other.radians; }
+        bool operator>(const Angle& other) const { return radians > other.radians; }
 
         /**
          * @brief Check if the current angle is less than or equal to another angle.
@@ -278,7 +276,7 @@ namespace gf
          * @param other The angle to compare with.
          * @return True if the current angle is less than or equal to the other angle, false otherwise.
          */
-        bool operator<=(const AngleT& other) const { return !(*this > other); }
+        bool operator<=(const Angle& other) const { return !(*this > other); }
 
         /**
          * @brief Check if the current angle is greater than or equal to another angle.
@@ -286,16 +284,13 @@ namespace gf
          * @param other The angle to compare with.
          * @return True if the current angle is greater than or equal to the other angle, false otherwise.
          */
-        bool operator>=(const AngleT& other) const { return !(*this < other); }
+        bool operator>=(const Angle& other) const { return !(*this < other); }
 
     private:
 
-        AngleType radians; ///< The angle in radians
+        double radians; ///< The angle in radians
 
     };
-
-    using Angle = AngleT<double>; // Default angle type
-    using Anglef = AngleT<float>; // Single-precision angle type
 
     /* Literals */
     inline Angle operator"" _deg(long double degrees)
@@ -308,16 +303,14 @@ namespace gf
         return Angle::from_radians(radians);
     }
 
-    template <typename AngleType>
-    AngleT<AngleType> AngleT<AngleType>::from_degrees(AngleType degrees)
+    inline Angle Angle::from_degrees(double degrees)
     {
-        return AngleT<AngleType>{degrees * M_PI / 180.0};
+        return Angle{degrees * M_PI / 180.0};
     }
 
-    template <typename AngleType>
-    AngleType AngleT<AngleType>::from_radians(AngleType radians)
+    inline Angle Angle::from_radians(double radians)
     {
-        return radians;
+        return Angle{radians};
     }
 
 } // namespace gf
