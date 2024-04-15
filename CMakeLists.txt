@@ -29,7 +29,6 @@ endif()
 
 set(
     SOURCES 
-    src/Vector2.cpp
     src/Utilities.cpp
 )
 
@@ -43,12 +42,12 @@ target_include_directories(${PROJECT} PUBLIC include/public)
 target_include_directories(${PROJECT} PRIVATE include/private)
 
 if(USE_CHIPMUNK2D)
-    target_compile_definitions(${PROJECT} PRIVATE GF_USING_CHIPMUNK2D)
+    target_compile_definitions(${PROJECT} PUBLIC GF_USING_CHIPMUNK2D)
     target_include_directories(${PROJECT} PRIVATE ${CHIPMUNK_INCLUDE_DIRS})
     target_link_libraries(${PROJECT} PRIVATE ${CHIPMUNK_LIBRARIES})
 endif()
 
 if (USE_SFML)
-    target_compile_definitions(${PROJECT} PRIVATE GF_USING_SFML)
+    target_compile_definitions(${PROJECT} PUBLIC GF_USING_SFML)
     target_link_libraries(${PROJECT} PRIVATE sfml-system sfml-network sfml-graphics sfml-window)
 endif()
