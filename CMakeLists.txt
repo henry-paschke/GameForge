@@ -30,6 +30,7 @@ endif()
 set(
     SOURCES 
     src/Utilities.cpp
+    src/Transform2.cpp
 )
 
 if(BUILD_SHARED_LIBS)

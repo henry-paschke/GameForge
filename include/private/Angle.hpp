@@ -1,12 +1,14 @@
 #pragma once
-#include <cmath>
 
-#ifndef M_PI
-    #define M_PI 3.14159265358979323846f
-#endif
+#include <cmath>
+#include <string>
+#include <iostream>
 
 namespace gf
 {
+
+    const float M_PI{3.14159265f};   ///< The value of pi to 8 decimal places, defined as a constant here because it is not defined in the cmath header
+
     /**
      * @brief A class to represent an angle in degrees or radians
     */
@@ -67,6 +69,11 @@ namespace gf
         float get_radians() const
         {
             return radians;
+        }
+
+        Angle get_mod(const Angle& angle) const
+        {
+            return Angle{std::fmod(radians, angle.get_radians())}; 
         }
 
         /* Math Functions */
@@ -286,23 +293,35 @@ namespace gf
          */
         bool operator>=(const Angle& other) const { return !(*this < other); }
 
+        /* Printing utilities */
+
+        /**
+         * @brief Get the angle as a string.
+         * 
+         * @return The angle as a string.
+         */
+        std::string get_string() const
+        {
+            return std::to_string(get_degrees()) + "_deg";
+        }
+
+        /**
+         * @brief Print the angle to an output stream.
+         * 
+         * @param os The output stream to print to.
+         * @param angle The angle to print.
+         * @return The output stream.
+         */
+        friend inline std::ostream& operator<<(std::ostream& os, const Angle& angle)
+        {
+            return os << angle.get_string();
+        }
+
     private:
 
         float radians; ///< The angle in radians
 
     };
-
-    /* Literals */
-
-    inline Angle operator"" _deg(long double degrees)
-    {
-        return Angle::from_degrees(static_cast<float>(degrees));
-    }
-
-    inline Angle operator"" _rad(long double radians)
-    {
-        return Angle::from_radians(static_cast<float>(radians));
-    }
 
     /* Static definitions */
 
@@ -316,4 +335,21 @@ namespace gf
         return Angle{radians};
     }
 
+    /* Constants for convenience */
+    const Angle PI{M_PI};            ///< The value of pi as an angle for efficiency
+    const Angle TWO_PI{2.0f * M_PI}; ///< The value of 2 * pi as an angle for efficiency
+
+
 } // namespace gf
+
+/* Literals */
+
+inline gf::Angle operator"" _deg(long double degrees)
+{
+    return gf::Angle::from_degrees(static_cast<float>(degrees));
+}
+
+inline gf::Angle operator"" _rad(long double radians)
+{
+    return gf::Angle::from_radians(static_cast<float>(radians));
+}
