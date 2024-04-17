@@ -23,7 +23,7 @@ namespace gf
         /**
          * @brief Default constructor for the vector, creates a 0 vector
         */
-        Vector2():
+        constexpr Vector2():
             x{},
             y{}
         {}
@@ -34,7 +34,7 @@ namespace gf
          * 
          * @param angle The angle of the vector
         */
-        static inline Vector2 from_angle(const Angle& angle);
+        constexpr static inline Vector2 from_angle(const Angle& angle);
 
         /**
          * @brief Constructor for the vector that takes an x 
@@ -45,7 +45,7 @@ namespace gf
          * @param y The y component of the vector
         */
         template<typename T1, typename T2>
-        Vector2(const T1 x, const T2 y): 
+        constexpr Vector2(const T1 x, const T2 y): 
             x{static_cast<Vector_type>(x)}, 
             y{static_cast<Vector_type>(y)}
         {}
@@ -60,7 +60,7 @@ namespace gf
          * @param vector The vector to copy
         */
         template <typename OtherType>
-        Vector2(const OtherType& vector): 
+        constexpr Vector2(const OtherType& vector): 
             x{static_cast<Vector_type>(vector.x)}, 
             y{static_cast<Vector_type>(vector.y)}
         {}
@@ -432,7 +432,7 @@ namespace gf
     using Vector2i = Vector2<int> ; // A vector with int components
 
     template <typename Vector_type>
-    inline Vector2<Vector_type> Vector2<Vector_type>::from_angle(const Angle& angle)
+    constexpr inline Vector2<Vector_type> Vector2<Vector_type>::from_angle(const Angle& angle)
     {
         return Vector2<Vector_type>{static_cast<Vector_type>(angle.cos()), static_cast<Vector_type>(angle.sin())};
     }

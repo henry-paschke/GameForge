@@ -4,36 +4,6 @@
 using namespace gf; 
 
 
-Transform2::Transform2():
-    position{},
-    rotation{},
-    scale{1.0f, 1.0f}
-{}
-
-Transform2::Transform2(const float x, const float y, const Angle& rotation):
-    position{x, y},
-    rotation{rotation},
-    scale{1.0f, 1.0f}
-{}
-
-Transform2::Transform2(const Vector2f& position, const Angle& rotation):
-    position{position},
-    rotation{rotation},
-    scale{1.0f, 1.0f}
-{}
-
-Transform2::Transform2(const Vector2f& position, const Angle& rotation, const Vector2f& scale):
-    position{position},
-    rotation{rotation},
-    scale{scale}
-{}
-
-Transform2::Transform2(const float x, const float y, const Angle& rotation, const float scale_x, const float scale_y):
-    position{x, y},
-    rotation{rotation},
-    scale{scale_x, scale_y}
-{}
-
 Vector2f Transform2::get_position() const
 {
     return position;

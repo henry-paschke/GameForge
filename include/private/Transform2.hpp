@@ -13,7 +13,11 @@ namespace gf
          * @brief Construct a new Transform2 object with a position of (0, 0), a rotation of 0 and a scale of (1, 1).
          *
         */
-        Transform2();
+        constexpr Transform2():
+            position{},
+            rotation{},
+            scale{1.0f, 1.0f}
+        {}
 
         /**
          * @brief Construct a new Transform2 object.
@@ -23,7 +27,11 @@ namespace gf
          * 
          * @param rotation The rotation of the transform.
         */
-        Transform2(const float x, const float y, const Angle& rotation);
+        constexpr Transform2(const float x, const float y, const Angle& rotation):
+            position{x, y},
+            rotation{rotation},
+            scale{1.0f, 1.0f}
+        {}
 
         /**
          * @brief Construct a new Transform2 object.
@@ -31,7 +39,11 @@ namespace gf
          * @param position The position of the transform.
          * @param rotation The rotation of the transform.
         */
-        Transform2(const Vector2f& position, const Angle& rotation);
+        constexpr Transform2(const Vector2f& position, const Angle& rotation):
+            position{position},
+            rotation{rotation},
+            scale{1.0f, 1.0f}
+        {}
 
         /**
          * @brief Construct a new Transform2 object.
@@ -40,7 +52,11 @@ namespace gf
          * @param rotation The rotation of the transform.
          * @param scale The scale of the transform.
         */
-        Transform2(const Vector2f& position, const Angle& rotation, const Vector2f& scale);
+        constexpr Transform2(const Vector2f& position, const Angle& rotation, const Vector2f& scale):
+            position{position},
+            rotation{rotation},
+            scale{scale}
+        {}
 
         /**
          * @brief Construct a new Transform2 object.
@@ -51,7 +67,11 @@ namespace gf
          * @param scale_x The x scale of the transform.
          * @param scale_y The y scale of the transform.
         */
-        Transform2(const float x, const float y, const Angle& rotation, const float scale_x, const float scale_y);
+        constexpr Transform2(const float x, const float y, const Angle& rotation, const float scale_x, const float scale_y):
+            position{x, y},
+            rotation{rotation},
+            scale{scale_x, scale_y}
+        {}
 
         /* Getters */
 
