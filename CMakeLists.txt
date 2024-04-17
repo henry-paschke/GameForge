@@ -32,6 +32,7 @@ set(
     src/Utilities.cpp
     src/Transform2.cpp
     src/Angle.cpp
+    src/Interpolation.cpp
 )
 
 if(BUILD_SHARED_LIBS)
