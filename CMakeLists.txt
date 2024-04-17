@@ -31,6 +31,7 @@ set(
     SOURCES 
     src/Utilities.cpp
     src/Transform2.cpp
+    src/Angle.cpp
 )
 
 if(BUILD_SHARED_LIBS)
