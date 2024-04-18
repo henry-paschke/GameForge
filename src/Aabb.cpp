@@ -21,7 +21,7 @@ using namespace gf;
 
     Aabb::operator sf::IntRect() const 
     { 
-        return sf::FloatRect(position.x - dimensions.x / 2, position.y - dimensions.y / 2, dimensions.x, dimensions.y); 
+        return sf::IntRect(static_cast<int>(position.x - dimensions.x / 2), static_cast<int>(position.y - dimensions.y / 2), static_cast<int>(dimensions.x), static_cast<int>(dimensions.y)); 
     }
 
     Aabb::Aabb(const sf::FloatRect& rect): 
