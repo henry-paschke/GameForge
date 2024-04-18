@@ -3,3 +3,4 @@
 #include "../../private/Angle.hpp"
 #include "../../private/Transform2.hpp"
 #include "../../private/Interpolation.hpp"
+#include "../../private/Aabb.hpp"

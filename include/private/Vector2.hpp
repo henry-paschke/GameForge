@@ -105,11 +105,6 @@ namespace gf
             return sf::Vector2f(x, y);
         }
 
-        void balls()
-        {
-
-        }
-
         /**
          * @brief Conversion operator for the vector that
          * converts the vector to a sf::Vector2i by casting.
@@ -246,6 +241,30 @@ namespace gf
         Vector_type get_cross_product(const Vector2& other) const
         {
             return (x * other.y) - (y * other.x);
+        }
+
+        /**
+         * @brief Gets the vector mirrored about an axis
+        */
+        Vector2 get_reflected(const Vector2& axis) const
+        {
+            return *this - (axis * 2 * get_dot_product(axis));
+        }
+
+        /**
+         * @brief Gets the vector flipped about a vertical axis
+        */
+        Vector2 get_flipped_x(Vector_type x) const
+        {
+            return Vector2(x - (this->x - x), y);
+        }
+
+        /**
+         * @brief Gets the vector flipped about a horizontal axis
+        */
+        Vector2 get_flipped_y(Vector_type y) const
+        {
+            return Vector2(x, y - (this->y - y));
         }
 
         /**
