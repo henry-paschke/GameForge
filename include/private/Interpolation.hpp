@@ -9,24 +9,20 @@ namespace gf
     /**
      * @brief Linearly interpolates between two values
      * 
-     * @tparam T The type of the values to interpolate
+     * @tparam T The type of the values to interpolate, can be any type that supports the +, -, and * operators
      * @param start_point The starting value
      * @param end_point The ending value
      * @param normalized_time The normalized time between the start and end points
      * @param easing_function The easing function to use
     */
     template <typename T>
-    T lerp(const T& start_point, const T& end_point, float normalized_time, Easing_function easing_function = nullptr)
+    T lerp(const T& start_point, const T& end_point, const float normalized_time, const Easing_function& easing_function = easing::linear)
     {   
         if (normalized_time > 1.0f || normalized_time < 0.0f)
         {
             throw std::invalid_argument("Normalized time must be between 0.0 and 1.0");
         }
-        if (easing_function)
-        {
-            normalized_time = easing_function(normalized_time);
-        }
-        return start_point + (end_point - start_point) * normalized_time;
+        return start_point + (end_point - start_point) * easing_function(normalized_time);
     }
 
     namespace easing

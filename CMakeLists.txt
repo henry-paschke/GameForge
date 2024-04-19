@@ -34,6 +34,9 @@ set(
     src/Angle.cpp
     src/Interpolation.cpp
     src/Aabb.cpp
+    src/Clock.cpp
+    src/Time.cpp
+    src/Process.cpp
 )
 
 if(BUILD_SHARED_LIBS)

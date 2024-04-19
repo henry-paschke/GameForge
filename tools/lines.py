@@ -9,7 +9,7 @@ def count_lines_of_code(directories):
                     file_path = os.path.join(root, file)
                     with open(file_path, 'r') as f:
                         lines = f.readlines()
-                        print(file_path,"    ", len(lines))
+                        print(file_path, " " * (80 - len(file_path)), len(lines))
                         total_lines += len(lines)
 
     return total_lines
