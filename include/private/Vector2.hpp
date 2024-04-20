@@ -439,7 +439,7 @@ namespace gf
         */
         friend std::ostream& operator<<(std::ostream& os, const Vector2& vector)
         {
-            return os << obj.get_string();
+            return os << vector.get_string();
         }
 
         Vector_type x; ///< The x component of the vector
