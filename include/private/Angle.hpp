@@ -274,7 +274,7 @@ namespace gf
     };
 
     /* Constants for convenience */
-    constexpr Angle PI{};//{M_PI};            ///< The value of pi as an angle for efficiency
+    constexpr Angle PI{M_PI};           ///< The value of pi as an angle for efficiency
     constexpr Angle TWO_PI{2.0f * M_PI}; ///< The value of 2 * pi as an angle for efficiency
 
 } // namespace gf

@@ -29,15 +29,16 @@ namespace gf
                 }
             }
 
-            void update()
+            void update(const gf::Time& dt)
             {
                 update_position();
-                update_components();
                 
                 for (auto& child : children)
                 {
-                    child->update();
+                    child->update(dt);
                 }
+                
+                update_components(dt);
             }
 
             void add_component(Game_object_component* component)
@@ -52,11 +53,11 @@ namespace gf
                 child->parent = this;
             }
 
-            void update_components()
+            void update_components(const gf::Time& dt)
             {
                 for (auto& component : components)
                 {
-                    component->update();
+                    component->update(dt);
                 }
             }
 

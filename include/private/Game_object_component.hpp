@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Time.hpp"
+
 namespace gf
 {
     class Game_object;
@@ -8,7 +10,7 @@ namespace gf
     {
         public:
             Game_object* owner;
-            virtual void update() = 0;
+            virtual void update(const gf::Time& dt) = 0;
 
             void set_owner(Game_object* owner)
             {

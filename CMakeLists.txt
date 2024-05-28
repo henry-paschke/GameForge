@@ -37,6 +37,8 @@ set(
     src/Clock.cpp
     src/Time.cpp
     src/Process.cpp
+    src/State_machine.cpp
+    src/components/Position_solver.cpp
 )
 
 if(BUILD_SHARED_LIBS)

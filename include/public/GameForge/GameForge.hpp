@@ -5,3 +5,7 @@
 #include "../../private/Interpolation.hpp"
 #include "../../private/Aabb.hpp"
 #include "../../private/Process.hpp"
+#include "../../private/Time.hpp"
+#include "../../private/Game_object.hpp"
+#include "../../private/Game_object_component.hpp"
+#include "../../private/State_machine.hpp"

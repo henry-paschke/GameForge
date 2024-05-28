@@ -157,12 +157,12 @@ namespace gf
              * @param easing The easing function to use
             */
             Angular_linear_process(Angle start, Angle end, const Time& length, const Easing_function& easing = easing::linear): 
-                Linear_process<gf::Angle>(start.get_mod(360.0_deg), end.get_mod(360.0_deg), length, easing) 
+                Linear_process<gf::Angle>(start.get_mod(TWO_PI), end.get_mod(TWO_PI), length, easing) 
             {
-                if (start - end > gf::PI)
-                    end += gf::TWO_PI;
-                if (start - end < -gf::PI)
-                    end -= gf::TWO_PI;
+                if (get_start() - get_end() > gf::PI)
+                    set_end(get_end() + gf::TWO_PI);
+                if (get_start() - get_end() < -gf::PI)
+                    set_end(get_end() - gf::TWO_PI);
             }
     };
 
