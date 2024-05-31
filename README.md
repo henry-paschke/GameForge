@@ -18,7 +18,7 @@ These frameworks are planned to have GameForge support and integration:
 
 # How to use
 
-It is highly reccomended that users build this library alongside their project, as the cmake options are highly specific to the project that the library is used with. To add the library to your project, simply git clone it and then add this to your cmakelists.txt:
+It is highly recomended that users build this library alongside their project, as the cmake options are highly specific to the project that the library is used with. To add the library to your project, simply git clone it and then add this to your cmakelists.txt:
 ```cmake 
 add_subdirectory(Path/To/GameForge ${CMAKE_BINARY_DIR}/GameForge)
 target_link_libraries(YourProjectName PUBLIC GameForge)
